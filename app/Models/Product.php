@@ -11,9 +11,10 @@ class Product extends Model
 
     public function get_product(){
         //get all products
-        $sql = $this->select('products.*', "category_product.product_category_name as product_category_name ")
+        $sql = $this->select("products.*", "category_product.product_category_name as product_category_name")
                     ->join('category_product', 'category_product.id', '=', 'products.product_category_id'); //join
 
         return $sql;
     }
 }
+
