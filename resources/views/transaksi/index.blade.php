@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Data Suppliers</title>
+    <title>Data Transaksi Penjualan</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body style="background: lightgray">
@@ -13,48 +13,57 @@
         <div class="row">
             <div class="col-md-12">
                 <div>
-                    <h3 class="text-center my-4">SUPPLIERS</h3>
+                    <h3 class="text-center my-4">TRANSAKSI PENJUALAN</h3>
                     <hr>
                 </div>
                 <div class="card border-0 shadow-sm rounded">
                     <div class="card-body">
-                        <a href="{{ route('suppliers.create') }}" class="btn btn-md btn-success mb-3">ADD SUPPLIER</a>
+                        <a href="{{ route('transaksi.create') }}" class="btn btn-md btn-success mb-3">ADD TRANSACTION</a>
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th scope="col">Nama Supplier</th>
-                                    <th scope="col">Alamat Supplier</th>
-                                    <th scope="col">PIC SUPPLIER</th>
-                                    <th scope="col">No Hp PIC Supplier</th>
+                                    <th scope="col">TANGGAL TRANSAKSI</th>
+                                    <th scope="col">NAMA KASIR</th>
+                                    <th scope="col">NAMA PRODUK</th>
+                                    <th scope="col">KATEGORI PRODUK</th>
+                                    <th scope="col">HARGA</th>
+                                    <th scope="col">JUMLAH</th>
+                                    <th scope="col">TOTAL HARGA</th>
                                     <th scope="col" style="width: 20%">ACTIONS</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($suppliers as $supplier)
+                                @forelse ($transaksi as $transaction)
                                 <tr>
-                                    <td>{{ $supplier->nama_supplier }}</td>
-                                    <td>{{ $supplier->alamat_supplier }}</td> 
-                                    <td>{{ $supplier->pic_supplier }}</td>
-                                    <td>{{ $supplier->no_hp_pic_supplier }}</td>
+                                    <td>{{ $transaction->tanggal_transaksi->format('d-m-Y') }}</td>
+                                    <td>{{ $transaction->nama_kasir }}</td>
+                                    <td>{{ $transaction->nama_produk }}</td>
+                                    <td>{{ $transaction->kategori_produk }}</td>
+                                    <td>{{ "Rp " . number_format($transaction->harga, 2, ',', '.') }}</td>
+                                    <td>{{ $transaction->jumlah_pembelian }}</td>
+                                    <td>{{ "Rp " . number_format($transaction->total_harga, 2, ',', '.') }}</td>
                                     <td class="text-center">
-                                        <form onsubmit="return confirm('Apakah Anda Yakin ?')" action="{{ route('suppliers.destroy', $supplier->id) }}" method="POST">
-                                            <a href="{{ route('suppliers.show', $supplier->id) }}" class="btn btn-sm btn-dark">SHOW</a>
-                                            <a href="{{ route('suppliers.edit', $supplier->id) }}" class="btn btn-sm btn-primary">EDIT</a>
+                                        <form onsubmit="return confirm('Apakah Anda Yakin ?')" action="{{ route('transactions.destroy', $transaction->id) }}" method="POST">
+                                            <a href="{{ route('transactions.show', $transaction->id) }}" class="btn btn-sm btn-dark">SHOW</a>
+                                            <a href="{{ route('transactions.edit', $transaction->id) }}" class="btn btn-sm btn-primary">EDIT</a>
                                             @csrf
                                             @method('DELETE')
-
                                             <button type="submit" class="btn btn-sm btn-danger">HAPUS</button>
                                         </form>
                                     </td>
                                 </tr>
-                            @empty
-                                <div class="alert alert-danger">
-                                    Data Suppliers belum Tersedia.
-                                </div>
+                                @empty
+                                <tr>
+                                    <td colspan="8" class="text-center">
+                                        <div class="alert alert-danger">
+                                            Data Transaksi Penjualan belum Tersedia.
+                                        </div>
+                                    </td>
+                                </tr>
                                 @endforelse
                             </tbody>
                         </table>
-                        {{ $suppliers->links() }}
+                        {{ $transaksi->links() }}
                     </div>
                 </div>
             </div>
@@ -83,7 +92,6 @@
                 timer: 2000
             });
         @endif
-
     </script>
 
 </body>

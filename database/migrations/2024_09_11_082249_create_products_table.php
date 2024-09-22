@@ -30,9 +30,21 @@ return new class extends Migration
 
         Schema::create('supplier', function (Blueprint $table) {
             $table->id();
-            $table->string('supplier_name');
+            $table->string('nama_supplier');
+            $table->string('alamat_supplier');
             $table->string('pic_supplier');
+            $table->integer('no_hp_pic_supplier');
             $table->timestamps();
+        });
+
+        
+        Schema::create('transaksi_penjualan', function (Blueprint $table) {
+            $table->id();
+            $table->string('id_product');
+            $table->integer('jumlah_pembelian'); 
+            $table->string('nama_kasir');
+            $table->timestamp('tanggal_transaksi'); 
+            $table->timestamps(); 
         });
     }
 
