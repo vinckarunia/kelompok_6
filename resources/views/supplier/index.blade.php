@@ -32,7 +32,6 @@
                             <tbody>
                                 @forelse ($suppliers as $supplier)
                                 <tr>
-                                    <td>{{ $supplier->nama_supplier }}</td>
                                     <td>{{ $supplier->alamat_supplier }}</td> 
                                     <td>{{ $supplier->pic_supplier }}</td>
                                     <td>{{ $supplier->no_hp_pic_supplier }}</td>

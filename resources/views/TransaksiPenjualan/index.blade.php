@@ -35,7 +35,7 @@
                             <tbody>
                                 @forelse ($transaksi as $transaction)
                                 <tr>
-                                    <td>{{ $transaction->tanggal_transaksi->format('d-m-Y') }}</td>
+                                <td>{{ \Carbon\Carbon::parse($transaction->tanggal_transaksi)->format('d-m-Y') }}</td>
                                     <td>{{ $transaction->nama_kasir }}</td>
                                     <td>{{ $transaction->nama_produk }}</td>
                                     <td>{{ $transaction->kategori_produk }}</td>
@@ -43,13 +43,14 @@
                                     <td>{{ $transaction->jumlah_pembelian }}</td>
                                     <td>{{ "Rp " . number_format($transaction->total_harga, 2, ',', '.') }}</td>
                                     <td class="text-center">
-                                        <form onsubmit="return confirm('Apakah Anda Yakin ?')" action="{{ route('transactions.destroy', $transaction->id) }}" method="POST">
-                                            <a href="{{ route('transactions.show', $transaction->id) }}" class="btn btn-sm btn-dark">SHOW</a>
-                                            <a href="{{ route('transactions.edit', $transaction->id) }}" class="btn btn-sm btn-primary">EDIT</a>
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-sm btn-danger">HAPUS</button>
-                                        </form>
+                                    <form onsubmit="return confirm('Apakah Anda Yakin ?')" action="{{ route('transaksi.destroy', $transaction->id) }}" method="POST">
+                                        <a href="{{ route('transaksi.show', $transaction->id) }}" class="btn btn-sm btn-dark">SHOW</a>
+                                        <a href="{{ route('transaksi.edit', $transaction->id) }}" class="btn btn-sm btn-primary">EDIT</a>
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-sm btn-danger">HAPUS</button>
+                                    </form>
+
                                     </td>
                                 </tr>
                                 @empty

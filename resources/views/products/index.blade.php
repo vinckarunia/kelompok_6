@@ -23,6 +23,7 @@
                             <thead>
                                 <tr>
                                     <th scope="col">IMAGE</th>
+                                    <th scope="col">Nama Supplier</th>
                                     <th scope="col">TITLE</th>
                                     <th scope="col">CATEGORY</th>
                                     <th scope="col">PRICE</th>
@@ -36,6 +37,7 @@
                                     <td class="text-center">
                                         <img src="{{ asset('/storage/products/' . $product->image) }}" class="rounded" style="width: 150px">
                                     </td>
+                                    <td>{{ $product->nama_supplier }}</td>
                                     <td>{{ $product->title }}</td>
                                     <td>{{ $product->product_category_name }}</td>
                                     <td>{{ "Rp " . number_format($product->price, 2, ',', '.') }}</td>
