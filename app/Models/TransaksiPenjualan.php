@@ -10,7 +10,7 @@ class TransaksiPenjualan extends Model
 {
     use HasFactory;
 
-    protected $table = 'transaksi_penjualan'; // Pastikan nama tabel sesuai
+    protected $table = 'transaksi_penjualan';
 
     protected $dates = ['tanggal_transaksi'];  
 
@@ -20,9 +20,9 @@ class TransaksiPenjualan extends Model
                 "transaksi_penjualan.*", 
                 "products.title as nama_produk", 
                 "products.price as harga", 
-                "category_product.product_category_name as kategori_produk" // Tambahkan ini
+                "category_product.product_category_name as kategori_produk" 
             )
             ->join('products', 'products.id', '=', 'transaksi_penjualan.id_product')
-            ->join('category_product', 'category_product.id', '=', 'products.product_category_id'); // Pastikan ini sesuai dengan relasi
+            ->join('category_product', 'category_product.id', '=', 'products.product_category_id'); 
     }
 }
