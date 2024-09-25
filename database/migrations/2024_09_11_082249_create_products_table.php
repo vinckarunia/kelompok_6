@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_category_id')->nullable()->index();
-            $table->foreignId('supplier_id')->nullable()->index();
+            $table->foreignId('product_category_id')->nullable()->index()->constrained('categories'); // Penamaan tabel diperbaiki
+            $table->foreignId('supplier_id')->nullable()->index()->constrained('suppliers'); // Penamaan tabel diperbaiki
             $table->string('image');
             $table->string('title');
             $table->text('description');
@@ -23,25 +23,24 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('category_product', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->string('product_category_name');
             $table->timestamps();
         });
 
-        Schema::create('supplier', function (Blueprint $table) {
+        Schema::create('suppliers', function (Blueprint $table) { // Ubah dari `supplier` menjadi `suppliers`
             $table->id();
             $table->string('nama_supplier');
             $table->string('alamat_supplier');
             $table->string('pic_supplier');
-            $table->integer('no_hp_pic_supplier');
+            $table->string('no_hp_pic_supplier'); // Ubah tipe dari integer ke string
             $table->timestamps();
         });
 
-        
         Schema::create('transaksi_penjualan', function (Blueprint $table) {
             $table->id();
-            $table->string('id_product');
+            $table->foreignId('id_product')->constrained('products'); // Relasi ke tabel products
             $table->integer('jumlah_pembelian'); 
             $table->string('nama_kasir');
             $table->timestamp('tanggal_transaksi'); 
