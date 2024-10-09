@@ -7,7 +7,7 @@
     <title>Data Products</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body style="background-image: url('https://www.thunderbike.com/wp-content/uploads/ngg_featured/Thunderbike-Harley-Davidson-Softail-Nobleout-Shooting-Custombike-Foto-Ben-Ott-10.jpg'); background-size: cover; background-position:center; background-repeat: no-repeat;">
+<body style="background: rgb(0, 0, 0)">
 
     <div class="container mt-5">
         <div class="row">
@@ -35,9 +35,9 @@
                                 @forelse ($products as $product)
                                 <tr>
                                     <td class="text-center">
-                                        <img src="{{ asset('/storage/products/' . $product->image) }}" class="rounded" style="width: 150px">
+                                        <img src="{{ asset('/storage/images/' . $product->image) }}" class="rounded" style="width: 150px">
                                     </td>
-                                    <td>{{ $product->id_supplier }}</td>
+                                    <td>{{ $product->pic_supplier }}</td>
                                     <td>{{ $product->title }}</td>
                                     <td>{{ $product->product_category_name }}</td>
                                     <td>{{ "Rp " . number_format($product->price, 2, ',', '.') }}</td>

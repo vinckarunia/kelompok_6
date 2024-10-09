@@ -13,12 +13,15 @@ return new class extends Migration
     {
         if (!Schema::hasTable('suppliers')) {
             Schema::create('suppliers', function (Blueprint $table) {
-                $table->id(); // Auto-incrementing primary key
-                $table->timestamps(); // Adds created_at and updated_at columns
+                $table->id();
+                $table->string ('supplier_name');
+                $table->string ('alamat_supplier');
+                $table->string ('pic_supplier');
+                $table->string ('no_hp_pic_supplier');
+                $table->timestamps();
             });
         }
     }
-    
 
     /**
      * Reverse the migrations.

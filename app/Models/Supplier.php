@@ -3,11 +3,10 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Supplier extends Model
 {
-    // Define the table associated with the model (optional if Laravel uses the pluralized form automatically)
-    protected $table = 'suppliers';
 
     // Example fields that could be mass-assigned
     protected $fillable = ['supplier_name', 'pic_supplier'];
