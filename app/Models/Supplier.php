@@ -2,25 +2,24 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Supplier extends Model
 {
-    use HasFactory;
 
-    protected $table = 'supplier'; 
-    
-    protected $fillable = [
-        'nama_supplier',
-        'alamat_supplier',
-        'pic_supplier',
-        'no_hp_pic_supplier',
-    ]; 
+    // Example fields that could be mass-assigned
+    protected $fillable = ['supplier_name', 'pic_supplier', 'alamat_supplier', 'no_hp_pic_supplier' ];
 
-    
+    /**
+     * Get all suppliers with any necessary joins or additional data.
+     */
     public function get_supplier()
     {
-        return $this->select("supplier.*"); 
+    
+        $sql = $this->select('suppliers.*');
+
+
+        return $sql;
     }
 }

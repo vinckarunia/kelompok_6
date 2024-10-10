@@ -3,109 +3,82 @@
 namespace App\Http\Controllers;
 
 use App\Models\Supplier;
-use Illuminate\View\View;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class SupplierController extends Controller
 {
     /**
-     * Menampilkan daftar supplier.
-     * 
-     * @return View
+     * Display a listing of the suppliers.
      */
-    public function index() : View
+    public function index()
     {
-        // Membuat instance model Supplier
-        $supplier = new Supplier;
-        
-        // Membangun query, menambahkan latest() dan paginate()
-        $suppliers = $supplier->get_supplier()
-                            ->latest()
-                            ->paginate(10);
-        
-        // Render view dengan suppliers
-        return view('supplier.index', compact('suppliers'));
+        // Fetch all suppliers, with pagination if needed
+        $suppliers = Supplier::paginate(10); // or Supplier::paginate(10);
+
+        return view('suppliers.index', compact('suppliers'));
     }
 
-      /**
-      * show 
-      *
-      * @param mixed $id
-      * @return View
-      */
-      public function show(string $id): View 
-      {
-
-        //get data by ID
-        $supplier_model = new Supplier;
-        $supplier = $supplier_model->get_supplier()->where("id", $id)->firstOrFail();
-
-        return view('supplier.show', compact('supplier'));
-      }
-
-     /**
-     * edit
+    /**
      * 
-     * @param mixed $id
-     * @return View
+     * create
+     * 
      */
-    public function edit(string $id): View
+    public function create()
     {
-        // Mengambil data supplier berdasarkan ID
-        $supplier = Supplier::findOrFail($id); // Menggunakan findOrFail untuk mendapatkan supplier
-
-        // Mengembalikan view dengan data supplier
-        return view('supplier.edit', compact('supplier')); // Menggunakan compact untuk mengirimkan data
+        return view('suppliers.create');
     }
 
-
-
-       /**
-     * update
-     * 
-     * @param  mixed $request
-     * @param  mixed $id
-     * @return RedirectResponse
+    /**
+     * Store a newly created supplier in storage.
      */
-    public function update(Request $request, $id): RedirectResponse
+    public function store(Request $request)
     {
-        
-        $request->validate([
-            'nama_supplier' => 'required|min:5',
-            'alamat_supplier' => 'required|min:10',
-            'no_hp_pic_supplier' => 'required|numeric',
+        // Validate and create a new supplier
+        $validated = $request->validate([
+            'supplier_name' => 'required|string|max:255',
+            'pic_supplier'  => 'nullable|string|max:255',
+            'alamat_supplier' => 'required|string|max:255',
+            'no_hp_pic_supplier' => 'nullable|numeric|digits_between:8,14',
         ]);
 
-        
-        $supplier = Supplier::findOrFail($id);
+        Supplier::create($validated);
 
-        
-        if ($request->hasFile('image')) {
-            
-            $image = $request->file('image');
-            $image->storeAs('public/images', $image->hashName());
-
-            
-            Storage::delete('public/images/' . $supplier->image);
-
-            
-            $supplier->update([
-                'image' => $image->hashName(),
-                'nama_supplier' => $request->nama_supplier,
-                'alamat_supplier' => $request->alamat_supplier,
-                'no_hp_pic_supplier' => $request->no_hp_pic_supplier,
-            ]);
-        } else {
-            
-            $supplier->update([
-                'nama_supplier' => $request->nama_supplier,
-                'alamat_supplier' => $request->alamat_supplier,
-                'no_hp_pic_supplier' => $request->no_hp_pic_supplier,
-            ]);
-        }
-
-        return redirect()->route('suppliers.index')->with(['success' => 'Data Supplier Berhasil Diubah']);
+        return redirect()->route('suppliers.index')->with('success', 'Supplier created successfully.');
     }
 
+    /**
+     * Show the form for editing the specified supplier.
+     */
+    public function edit(Supplier $supplier)
+    {
+        return view('suppliers.edit', compact('supplier'));
+    }
+
+    /**
+     * Update the specified supplier in storage.
+     */
+    public function update(Request $request, Supplier $supplier)
+    {
+        // Validate and update the supplier
+        $validated = $request->validate([
+            'supplier_name' => 'required|string|max:255',
+            'pic_supplier'  => 'nullable|string|max:255',
+            'alamat_supplier' => 'required|string|max:255',
+            'no_hp_pic_supplier' => 'nullable|numeric|digits_between:8,14',
+        ]);
+
+        $supplier->update($validated);
+
+        return redirect()->route('suppliers.index')->with('success', 'Supplier updated successfully.');
+    }
+
+    /**
+     * Remove the specified supplier from storage.
+     */
+    public function destroy(Supplier $supplier)
+    {
+        $supplier->delete();
+
+        return redirect()->route('suppliers.index')->with('success', 'Supplier deleted successfully.');
+    }
 }

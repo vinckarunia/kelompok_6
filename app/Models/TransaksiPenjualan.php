@@ -4,25 +4,23 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
 
 class TransaksiPenjualan extends Model
 {
     use HasFactory;
 
-    protected $table = 'transaksi_penjualan';
+    protected $table = 'transaksi_penjualan'; // Specify the table name if not the plural of the model name
 
-    protected $dates = ['tanggal_transaksi'];  
+    protected $fillable = [
+        'id_products',
+        'jumlah_pembelian',
+        'nama_kasir',
+        'tanggal_transaksi',
+    ];
 
-    public function get_transaksi()
+    // Define relationships, for example:
+    public function product()
     {
-        return $this->select(
-                "transaksi_penjualan.*", 
-                "products.title as nama_produk", 
-                "products.price as harga", 
-                "category_product.product_category_name as kategori_produk" 
-            )
-            ->join('products', 'products.id', '=', 'transaksi_penjualan.id_product')
-            ->join('category_product', 'category_product.id', '=', 'products.product_category_id'); 
+        return $this->belongsTo(Product::class, 'id_products');
     }
 }
