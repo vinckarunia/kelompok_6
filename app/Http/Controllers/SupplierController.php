@@ -19,7 +19,9 @@ class SupplierController extends Controller
     }
 
     /**
-     * Show the form for creating a new supplier.
+     * 
+     * create
+     * 
      */
     public function create()
     {
@@ -35,6 +37,8 @@ class SupplierController extends Controller
         $validated = $request->validate([
             'supplier_name' => 'required|string|max:255',
             'pic_supplier'  => 'nullable|string|max:255',
+            'alamat_supplier' => 'required|string|max:255',
+            'no_hp_pic_supplier' => 'nullable|numeric|digits_between:8,14',
         ]);
 
         Supplier::create($validated);
@@ -59,6 +63,8 @@ class SupplierController extends Controller
         $validated = $request->validate([
             'supplier_name' => 'required|string|max:255',
             'pic_supplier'  => 'nullable|string|max:255',
+            'alamat_supplier' => 'required|string|max:255',
+            'no_hp_pic_supplier' => 'nullable|numeric|digits_between:8,14',
         ]);
 
         $supplier->update($validated);
