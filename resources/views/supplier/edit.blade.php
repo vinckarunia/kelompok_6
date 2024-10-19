@@ -7,11 +7,20 @@
     <title>Edit Suppliers</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body style="background: lightgray">
+<style>
+    .bg{
+        background: linear-gradient(to right, darkslateblue, salmon)
+    }
+
+    .title {
+        color: white;
+    }
+</style>
+<body class="bg">
     <div class="container mt-5 mb-5">
         <div class="row">
             <div class="col-md-12">
-                <h4>Edit Suppliers</h4>
+                <h4 class="title">Edit Suppliers</h4>
                 <div class="card border-0 shadow-sm rounded">
                     <div class="card-body">
                         <form action="{{ route('suppliers.update', $supplier->id) }}" method="POST"  enctype="multipart/form-data">
@@ -63,7 +72,21 @@
             </div>
         </div>
     </div>
-
+    <script src="https://unpkg.com/typeit@8.7.1/dist/index.umd.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+        new TypeIt(".title", {
+        strings: [],
+        speed: 50
+        }).go();
+
+       
+
+      
+
+        });
+    </script>
 </body>
 </html>

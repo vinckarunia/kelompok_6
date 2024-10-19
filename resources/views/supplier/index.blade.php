@@ -48,14 +48,14 @@
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     }
 
-    .btn{
+    #btn{
         color: white;
         border: 2px solid white;
         margin-bottom: 10px;
         transition: 0.2s;
     }
 
-    .btn:hover{
+    #btn:hover{
         color: black;
         background: white;
     }
@@ -72,7 +72,7 @@
                 </div>
                 <div class="card border-0 shadow-sm rounded" id="card">
                     <div class="card-body" >
-                        <a href="{{ route('suppliers.create') }}" class="btn">ADD SUPPLIER</a>
+                        <a href="{{ route('suppliers.create') }}" class="btn btn-md  mb-3" id="btn">ADD SUPPLIER</a>
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
