@@ -7,35 +7,94 @@
     <title>Data Products</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body style="background: lightgray">
+<style>
+    .bg{
+        background: linear-gradient(to right, darkslateblue, salmon)
+    }
+
+    #products{
+        color: white;
+    }
+
+    #card{
+        background:rgba(255, 255, 255, 0.1);
+    }
+
+    #btn {
+        border: 2px solid white;
+        color: white;
+        transition: 0.2s;
+    }
+
+    #btn:hover {
+        color: black ;
+        background: white;
+    }
+
+    .table {
+    background-color: rgba(255, 255, 255, 0.1); /* Transparansi */
+    backdrop-filter: blur(10px); /* Blur di belakang elemen */
+    border-radius: 10px; /* Membuat sudut tabel melengkung */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Garis transparan */
+    }
+
+    .table thead {
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    border-radius: 10px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .table tbody tr {
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(3px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .table td {
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+   
+    }
+
+    .table th {
+    background-color: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(5px);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Efek bayangan di bawah */
+    }
+    
+
+
+</style>
+<body  class="bg">
 
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-12">
                 <div>
-                    <h3 class="text-center my-4">PRODUCTS</h3>
+                    <h3 class="text-center my-4" id="products">PRODUCTS</h3>
                     <hr>
                 </div>
-                <div class="card border-0 shadow-sm rounded">
-                    <div class="card-body">
-                        <a href="{{ route('products.create') }}" class="btn btn-md btn-success mb-3">ADD PRODUCT</a>
+                <div class="card border-0 shadow-sm rounded" id="card">
+                    <div class="card-body" style="border: 2px solid white; border-radius: 7px;"  >
+                        <a href="{{ route('products.create') }}" class="btn btn-md  mb-3"  id="btn">ADD PRODUCT</a>
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th scope="col">IMAGE</th>
-                                    <th scope="col">Nama Supplier</th>
-                                    <th scope="col">TITLE</th>
-                                    <th scope="col">CATEGORY</th>
-                                    <th scope="col">PRICE</th>
-                                    <th scope="col">STOCK</th>
-                                    <th scope="col" style="width: 20%">ACTIONS</th>
+                                    <th scope="col" id="img">IMAGE</th>
+                                    <th scope="col" id="nama_supplier">Nama Supplier</th>
+                                    <th scope="col" id="title">TITLE</th>
+                                    <th scope="col" id="category">CATEGORY</th>
+                                    <th scope="col" id="price">PRICE</th>
+                                    <th scope="col" id="stock">STOCK</th>
+                                    <th scope="col" style="width: 20%" id="action">ACTIONS</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @forelse ($products as $product)
                                 <tr>
                                     <td class="text-center">
-                                        <img src="{{ asset('/storage/images/' . $product->image) }}" class="rounded" style="width: 150px">
+                                        <img src="{{ asset('/storage/images/' . $product->image) }}" class="rounded" style="width: 150px; border: solid 2px red;">
                                     </td>
                                     <td>{{ $product->nama_supplier }}</td>
                                     <td>{{ $product->title }}</td>
@@ -66,11 +125,51 @@
             </div>
         </div>
     </div>
-
+    <script src="https://unpkg.com/typeit@8.7.1/dist/index.umd.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
+         document.addEventListener("DOMContentLoaded", function () {
+        new TypeIt("#products", {
+        strings: [],
+        speed: 50
+        }).go();
+
+        new TypeIt("#img", {
+        strings: [],
+        speed: 200
+        }).go();
+        
+        new TypeIt("#nama_supplier", {
+        strings: [],
+        speed: 200
+        }).go();
+
+        new TypeIt("#title", {
+        strings: [],
+        speed: 200
+        }).go();
+
+
+        new TypeIt("#category", {
+        strings: [],
+        speed: 200
+        }).go();
+
+        new TypeIt("#price", {
+        strings: [],
+        speed: 200
+        }).go();
+
+        new TypeIt("#stock", {
+        strings: [],
+        speed: 200
+        }).go();
+
+      
+
+        });
         // message with sweetalert
         @if(session('success'))
             Swal.fire({
