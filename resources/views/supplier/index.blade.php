@@ -59,6 +59,47 @@
         color: black;
         background: white;
     }
+
+    #show {
+        background: #394867;
+        color: white;
+        transition: 0.2s;
+        border:none;
+    }
+
+    #show:hover {
+        background: #212A3E;
+        border:none;
+    }
+
+    #edit {
+        color: white;
+        background-color: #6A5ACD;
+        transition: 0.2s;
+        margin-left:10px;
+        transition: 0.2s;
+        border:none;
+    }
+
+    #edit:hover {
+        background-color: #4B0082;
+        border: none;
+    }
+
+
+    #hapus {
+        color: white;
+        background: #FF7F50;
+        transition: 0.2s;
+        margin-left: 10px;
+        border:none;
+        
+    }
+
+    #hapus:hover {
+        border: none;
+        background:  #FF6347;
+    }
     
 </style>
 <body class="bg">
@@ -94,12 +135,12 @@
                                     <td class="text-center">
                                     
                                         <form onsubmit="return confirm('Apakah Anda Yakin ?')" action="{{ route('suppliers.destroy', $supplier->id) }}" method="POST">
-                                            <a href="{{ route('suppliers.show', $supplier->id) }}" class="btn btn-sm btn-dark">SHOW</a>
-                                            <a href="{{ route('suppliers.edit', $supplier->id) }}" class="btn btn-sm btn-primary">EDIT</a>
+                                            <a href="{{ route('suppliers.show', $supplier->id) }}" class="btn btn-sm btn-dark" id="show">SHOW</a>
+                                            <a href="{{ route('suppliers.edit', $supplier->id) }}" class="btn btn-sm btn-primary" id="edit">EDIT</a>
                                             @csrf
                                             @method('DELETE')
 
-                                            <button type="submit" class="btn btn-sm btn-danger">HAPUS</button>
+                                            <button type="submit" class="btn btn-sm btn-danger" id="hapus">HAPUS</button>
                                         </form>
                                     </td>
                                 </tr>

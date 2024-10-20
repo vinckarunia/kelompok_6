@@ -62,6 +62,47 @@
     backdrop-filter: blur(5px);
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Efek bayangan di bawah */
     }
+
+    #show {
+        background: #394867;
+        color: white;
+        transition: 0.2s;
+    }
+
+    #show:hover {
+        background: #212A3E;
+    }
+
+
+
+    #edit {
+        color: white;
+        background-color: #6A5ACD;
+        transition: 0.2s;
+        margin-left:10px;
+        transition: 0.2s;
+    }
+
+    #edit:hover {
+        background-color: #4B0082;
+        border: none;
+    }
+
+
+    #hapus {
+        color: white;
+        background: #FF7F50;
+        transition: 0.2s;
+        margin-left: 10px;
+        
+    }
+
+    #hapus:hover {
+        border: none;
+        background:  #FF6347;
+    }
+
+    
     
 
 
@@ -94,7 +135,7 @@
                                 @forelse ($products as $product)
                                 <tr>
                                     <td class="text-center">
-                                        <img src="{{ asset('/storage/images/' . $product->image) }}" class="rounded" style="width: 150px; border: solid 2px red;">
+                                        <img src="{{ asset('/storage/images/' . $product->image) }}" class="rounded" style="width: 150px;">
                                     </td>
                                     <td>{{ $product->nama_supplier }}</td>
                                     <td>{{ $product->title }}</td>
@@ -103,12 +144,12 @@
                                     <td>{{ $product->stock }}</td>
                                     <td class="text-center">
                                         <form onsubmit="return confirm('Apakah Anda Yakin ?')" action="{{ route('products.destroy', $product->id) }}" method="POST">
-                                            <a href="{{ route('products.show', $product->id) }}" class="btn btn-sm btn-dark">SHOW</a>
-                                            <a href="{{ route('products.edit', $product->id) }}" class="btn btn-sm btn-primary">EDIT</a>
+                                            <a href="{{ route('products.show', $product->id) }}" class="btn btn-sm" id="show">SHOW</a>
+                                            <a href="{{ route('products.edit', $product->id) }}" class="btn btn-sm" id="edit">EDIT</a>
                                             @csrf
                                             @method('DELETE')
 
-                                            <button type="submit" class="btn btn-sm btn-danger">HAPUS</button>
+                                            <button type="submit" class="btn btn-sm" id="hapus">HAPUS</button>
                                         </form>
                                     </td>
                                 </tr>

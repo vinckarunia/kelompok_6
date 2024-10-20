@@ -8,13 +8,69 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <style>
-    .bg {
-        background: linear-gradient(to right, darkslateblue, salmon);
-    }
+    body {
+            background: linear-gradient(to right, darkslateblue, salmon);
+        }
+        
+        .card {
+            background: linear-gradient(to right, rgba(231, 243, 254, 0.3), rgba(255, 255, 255, 0.3));
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
 
-    .title{
-        color: white;
-    }
+        h4 {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        .form-control {
+            border: 1px solid #ced4da;
+            padding: 10px;
+            font-size: 14px;
+        }
+
+        .btn-primary {
+            background-color: #6A5ACD;
+            border-color: #007bff;
+            color: #FFFFFF;
+            font-weight: bold;
+            padding: 10px 20px;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #4B0082;
+            color: #FFFFFF;
+            border: none;
+        }
+
+        .btn-warning {
+            background-color: #FF7F50;
+            border-color: #ffc107;
+            color: #FFFFFF;
+            font-weight: bold;
+            padding: 10px 20px;
+            border: none;
+        }
+
+        .btn-warning:hover {
+            background-color: #FF6347;
+            color: #FFFFFF;
+            border: none;
+        }
+
+        .alert-danger {
+            font-size: 12px;
+            padding: 5px;
+            margin-top: 10px;
+        }
 
 </style>
 <body class="bg">
