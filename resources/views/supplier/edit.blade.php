@@ -107,6 +107,18 @@
                                 @enderror
                             </div>
 
+                            <div class="form-group mb-3">
+                                <label class="font-weight-bold">PIC Supplier</label>
+                                <input type="text" class="form-control @error('pic_supplier') is-invalid @enderror" name="pic_supplier"
+                                value="{{ old('pic_supplier', $supplier->pic_supplier) }}" placeholder="Masukkan pic supplier">
+
+                                @error('pic_supplier')
+                                <div class="alert alert-danger mt-2">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
+                            
 
                             <div class="form-group mb-3">
                                 <label class="font-weight-bold">No HP PIC Supplier</label>

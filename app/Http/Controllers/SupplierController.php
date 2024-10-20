@@ -74,6 +74,7 @@ class SupplierController extends Controller
         $request->validate([
             'nama_supplier' => 'required|min:5',
             'alamat_supplier' => 'required|min:10',
+            'pic_supplier' => 'required|min:5',
             'no_hp_pic_supplier' => 'required|numeric',
         ]);
 
@@ -94,6 +95,7 @@ class SupplierController extends Controller
                 'image' => $image->hashName(),
                 'nama_supplier' => $request->nama_supplier,
                 'alamat_supplier' => $request->alamat_supplier,
+                'pic_supplier' => $request->pic_supplier,
                 'no_hp_pic_supplier' => $request->no_hp_pic_supplier,
             ]);
         } else {
@@ -101,6 +103,7 @@ class SupplierController extends Controller
             $supplier->update([
                 'nama_supplier' => $request->nama_supplier,
                 'alamat_supplier' => $request->alamat_supplier,
+                'pic_supplier' => $request->pic_supplier,
                 'no_hp_pic_supplier' => $request->no_hp_pic_supplier,
             ]);
         }
