@@ -122,4 +122,13 @@ class SupplierController extends Controller
             return redirect()->route('suppliers.index')->with(['success' => 'Data Supplier Berhasil Diubah']);        
     }
 
+    /**
+     * Remove the specified supplier from storage.
+     */
+    public function destroy(Supplier $supplier)
+    {
+        $supplier->delete();
+
+        return redirect()->route('suppliers.index')->with('success', 'Supplier deleted successfully.');
+    }
 }
