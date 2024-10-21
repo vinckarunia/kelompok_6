@@ -88,12 +88,12 @@
 
                         <div class="form-group mb-3">
                             <label class="font-weight-bold">PIC Supplier</label>
-                            <input type="text" class="form-control @error('pic_supplier') is-invalid @enderror" name="pic_supplier" placeholder="Masukkan PIC Supplier">
+                            <input type="text" class="form-control @error('pic_supplier') is-invalid @enderror" name="pic_supplier" placeholder="Masukkan Nama PIC Supplier">
                         </div>
 
                         <div class="form-group mb-3">
                             <label class="font-weight-bold">No. HP PIC Supplier</label>
-                            <input type="text" class="form-control @error('no_hp_pic_supplier') is-invalid @enderror" name="no_hp_pic_supplier" placeholder="Masukkan No. HP PIC Supplier">
+                            <input type="text" class="form-control @error('no_hp_pic_supplier') is-invalid @enderror" name="no_hp_pic_supplier" placeholder="Masukkan No HP PIC Supplier">
                         </div>
 
                         <button type="submit" class="btn btn-md btn-primary me-3">SAVE</button>

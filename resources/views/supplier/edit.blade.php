@@ -110,6 +110,19 @@
                             </div>
 
                             <div class="form-group mb-3">
+                                <label class="font-weight-bold">PIC Supplier</label>
+                                <textarea class="form-control @error('alamat_supplier') is-invalid @enderror"
+                                name="alamat_supplier" rows="3" placeholder="Masukkan Nama PIC Supplier">
+                                {{ old('pic_supplier', $supplier->pic_supplier) }}</textarea>
+
+                                @error('pic_supplier')
+                                    <div class="alert alert-danger mt-2">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group mb-3">
                                 <label class="font-weight-bold">No HP PIC Supplier</label>
                                 <input type="text" class="form-control @error('no_hp_pic_supplier') is-invalid @enderror"
                                 name="no_hp_pic_supplier" value="{{ old('no_hp_pic_supplier', $supplier->no_hp_pic_supplier) }}" placeholder="Masukkan No HP PIC Supplier">
