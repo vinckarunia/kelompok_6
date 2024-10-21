@@ -73,7 +73,6 @@
     </style>
 
 </head>
-<body style="background: lightgray">
     <div class="container mt-5 mb-5">
         <div class="row">
             <div class="col-md-12">
@@ -144,11 +143,8 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
     <script src="https://unpkg.com/typeit@8.7.1/dist/index.umd.js"></script>
     <script>
-        CKEDITOR.replace('description');
-
         document.addEventListener("DOMContentLoaded", function () {
             new TypeIt(".title", {
             strings: [],

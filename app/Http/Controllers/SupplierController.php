@@ -3,11 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Product;
 use App\Models\Supplier;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Storage;
 
 class SupplierController extends Controller
 {
@@ -105,40 +103,23 @@ class SupplierController extends Controller
     {
         
         $request->validate([
-            'nama_supplier' => 'required|min:5',
-            'alamat_supplier' => 'required|min:10',
-            'no_hp_pic_supplier' => 'required|numeric',
+            'nama_supplier'         => 'required|min:5',
+            'alamat_supplier'       => 'required|min:10',
+            'pic_supplier'          => 'required|min:5',
+            'no_hp_pic_supplier'    => 'required|numeric',
         ]);
 
         
         $supplier = Supplier::findOrFail($id);
 
         
-        if ($request->hasFile('image')) {
-            
-            $image = $request->file('image');
-            $image->storeAs('public/images', $image->hashName());
-
-            
-            Storage::delete('public/images/' . $supplier->image);
-
-            
-            $supplier->update([
-                'image' => $image->hashName(),
-                'nama_supplier' => $request->nama_supplier,
-                'alamat_supplier' => $request->alamat_supplier,
-                'no_hp_pic_supplier' => $request->no_hp_pic_supplier,
+        $supplier->update([
+                'nama_supplier'         => $request->nama_supplier,
+                'alamat_supplier'       => $request->alamat_supplier,
+                'pic_supplier'          => $request->pic_supplier,
+                'no_hp_pic_supplier'    => $request->no_hp_pic_supplier,
             ]);
-        } else {
-            
-            $supplier->update([
-                'nama_supplier' => $request->nama_supplier,
-                'alamat_supplier' => $request->alamat_supplier,
-                'no_hp_pic_supplier' => $request->no_hp_pic_supplier,
-            ]);
-        }
-
-        return redirect()->route('suppliers.index')->with(['success' => 'Data Supplier Berhasil Diubah']);
+            return redirect()->route('suppliers.index')->with(['success' => 'Data Supplier Berhasil Diubah']);        
     }
 
 }
