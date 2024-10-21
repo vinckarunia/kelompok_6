@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+use App\Models\Product;
 use App\Models\Supplier;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class SupplierController extends Controller
 {
@@ -28,7 +30,38 @@ class SupplierController extends Controller
         return view('supplier.index', compact('suppliers'));
     }
 
-      /**
+
+    /**
+     * store
+     * 
+     * @param mixed $request
+     * @return RedirectResponse
+     */
+
+    public function store(Request $request):RedirectResponse
+    {
+        //validate from
+        $validatedData = $request->validate([
+            'nama_supplier'         => 'required|min:5',
+            'alamat_supplier'       => 'required|min:5',
+            'pic_supplier'          => 'required|min:5',
+            'no_hp_pic_supplier'    => 'required|min:10|max:13'
+        ]);
+ 
+        //create Product
+        Supplier::create([
+            'nama_supplier'         => $request->nama_supplier,
+            'alamat_supplier'       => $request->alamat_supplier,
+            'pic_supplier'          => $request->pic_supplier,
+            'no_hp_pic_supplier'    => $request->no_hp_pic_supplier
+        ]);
+  
+            //redirect to index
+        return redirect()->route('suppliers.index')->with(['success' => 'Data berhasil disimpan!']);
+    }
+
+
+    /**
       * show 
       *
       * @param mixed $id
@@ -44,7 +77,7 @@ class SupplierController extends Controller
         return view('supplier.show', compact('supplier'));
       }
 
-     /**
+    /**
      * edit
      * 
      * @param mixed $id
@@ -61,7 +94,7 @@ class SupplierController extends Controller
 
 
 
-       /**
+    /**
      * update
      * 
      * @param  mixed $request
