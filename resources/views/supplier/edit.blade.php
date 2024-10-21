@@ -6,9 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Edit Suppliers</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<style>
-     body {
+    <style>
+        body {
             background: linear-gradient(to right, darkslateblue, salmon);
         }
         
@@ -71,8 +70,9 @@
             padding: 5px;
             margin-top: 10px;
         }
-</style>
-<body>
+    </style>
+
+</head>
     <div class="container mt-5 mb-5">
         <div class="row">
             <div class="col-md-12">
@@ -98,7 +98,7 @@
                             <div class="form-group mb-3">
                                 <label class="font-weight-bold">Alamat Supplier</label>
                                 <textarea class="form-control @error('alamat_supplier') is-invalid @enderror"
-                                        name="alamat_supplier" rows="3" placeholder="Masukkan Alamat Supplier">{{ old('alamat_supplier', $supplier->alamat_supplier) }}</textarea>
+                                name="alamat_supplier" rows="3" placeholder="Masukkan Alamat Supplier">{{ old('alamat_supplier', $supplier->alamat_supplier) }}</textarea>
 
                                 @error('alamat_supplier')
                                     <div class="alert alert-danger mt-2">
@@ -109,16 +109,15 @@
 
                             <div class="form-group mb-3">
                                 <label class="font-weight-bold">PIC Supplier</label>
-                                <input type="text" class="form-control @error('pic_supplier') is-invalid @enderror" name="pic_supplier"
-                                value="{{ old('pic_supplier', $supplier->pic_supplier) }}" placeholder="Masukkan pic supplier">
+                                <textarea class="form-control @error('alamat_supplier') is-invalid @enderror"
+                                name="alamat_supplier" rows="3" placeholder="Masukkan Nama PIC Supplier">{{ old('pic_supplier', $supplier->pic_supplier) }}</textarea>
 
                                 @error('pic_supplier')
-                                <div class="alert alert-danger mt-2">
-                                    {{ $message }}
-                                </div>
+                                    <div class="alert alert-danger mt-2">
+                                        {{ $message }}
+                                    </div>
                                 @enderror
                             </div>
-                            
 
                             <div class="form-group mb-3">
                                 <label class="font-weight-bold">No HP PIC Supplier</label>
@@ -140,20 +139,15 @@
             </div>
         </div>
     </div>
-    <script src="https://unpkg.com/typeit@8.7.1/dist/index.umd.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/typeit@8.7.1/dist/index.umd.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-        new TypeIt(".title", {
-        strings: [],
-        speed: 50
-        }).go();
-
-       
-
-      
-
+            new TypeIt(".title", {
+            strings: [],
+            speed: 50
+            }).go();
         });
     </script>
 </body>
