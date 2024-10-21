@@ -98,8 +98,7 @@
                             <div class="form-group mb-3">
                                 <label class="font-weight-bold">Alamat Supplier</label>
                                 <textarea class="form-control @error('alamat_supplier') is-invalid @enderror"
-                                name="alamat_supplier" rows="3" placeholder="Masukkan Alamat Supplier">
-                                {{ old('alamat_supplier', $supplier->alamat_supplier) }}</textarea>
+                                name="alamat_supplier" rows="3" placeholder="Masukkan Alamat Supplier">{{ old('alamat_supplier', $supplier->alamat_supplier) }}</textarea>
 
                                 @error('alamat_supplier')
                                     <div class="alert alert-danger mt-2">
@@ -111,8 +110,7 @@
                             <div class="form-group mb-3">
                                 <label class="font-weight-bold">PIC Supplier</label>
                                 <textarea class="form-control @error('alamat_supplier') is-invalid @enderror"
-                                name="alamat_supplier" rows="3" placeholder="Masukkan Nama PIC Supplier">
-                                {{ old('pic_supplier', $supplier->pic_supplier) }}</textarea>
+                                name="alamat_supplier" rows="3" placeholder="Masukkan Nama PIC Supplier">{{ old('pic_supplier', $supplier->pic_supplier) }}</textarea>
 
                                 @error('pic_supplier')
                                     <div class="alert alert-danger mt-2">
