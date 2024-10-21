@@ -8,12 +8,19 @@ class CreateDetailTransaksiPenjualansTable extends Migration
 {
     public function up()
 {
-    Schema::dropIfExists('detail_transaksi_penjualans');
+    Schema::create('detail_transaksi_penjualans', function (Blueprint $table) {
+        $table->id();
+        $table->foreignId('transaksi_penjualan_id')->constrained('transaksi_penjualans')->onDelete('cascade');
+        $table->foreignId('product_id')->constrained()->onDelete('cascade');
+        $table->integer('jumlah_pembelian');
+        $table->decimal('harga', 15, 2)->default(0);
+        $table->timestamps();
+    });
 }
 
 public function down()
 {
-    // You can reverse the dropping of the table here, if needed
+    Schema::dropIfExists('detail_transaksi_penjualans');
 }
 
 }

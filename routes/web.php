@@ -11,4 +11,4 @@ Route::get('/', function () {
 //route resource for products
 Route::resource('/products', \App\Http\Controllers\ProductController::class);
 Route::resource('/suppliers', SupplierController::class);
-Route::resource('/transaksi_penjualans', TransaksiPenjualanController::class);
+Route::resource('/transaksi', TransaksiPenjualanController::class);

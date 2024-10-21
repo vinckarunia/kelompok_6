@@ -28,7 +28,7 @@
         <div class="col-md-12">
             <div class="card border-0 shadow-sm rounded">
                 <div class="card-body">
-                    <a href="{{ route('transaksi.create') }}" class="btn btn-md btn-success mb-3">ADD TRANSACTION</a>
+                    <a href="{{ url('transaksi/create')}}" class="btn btn-md btn-success mb-3">ADD TRANSACTION</a>
                     <table class="table table-bordered">
                         <thead>
                             <tr>

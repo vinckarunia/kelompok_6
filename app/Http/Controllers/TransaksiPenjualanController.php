@@ -36,7 +36,7 @@ class TransaksiPenjualanController extends Controller
         DB::transaction(function () use ($request) {
             $transaksi = TransaksiPenjualan::create([
                 'tanggal_transaksi' => $request->tanggal_transaksi,
-                'total' => 0, // Akan dihitung kemudian
+                'total' => 0,
             ]);
 
             $total = 0;
@@ -45,15 +45,17 @@ class TransaksiPenjualanController extends Controller
                 $product = Product::find($detail['product_id']);
                 $subtotal = $product->price * $detail['jumlah_pembelian'];
                 $total += $subtotal;
-
+                // dd($product);
                 DetailTransaksiPenjualan::create([
                     'transaksi_penjualan_id' => $transaksi->id,
                     'product_id' => $detail['product_id'],
+                    'harga' => $product->price,
                     'jumlah_pembelian' => $detail['jumlah_pembelian'],
                 ]);
             }
             $transaksi->update(['total' => $total]);
         });
+        
 
         return redirect()->route('transaksi.index')
                           ->with('success', 'Transaksi penjualan berhasil ditambahkan.');
