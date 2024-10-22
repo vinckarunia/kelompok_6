@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('transaksi__penjualans', function (Blueprint $table) {
             $table->id();
-            $table->string('id_product');
+            $table->string('product_id');
             $table->integer('jumlah_pembelian'); 
             $table->string('nama_kasir');
             $table->timestamp('tanggal_transaksi'); 

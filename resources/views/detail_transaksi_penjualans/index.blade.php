@@ -42,7 +42,7 @@
                                 @forelse ($detailTransaksiPenjualans as $detail)
                                     <tr>
                                         <td>{{ $detail->nama_kasir }}</td>
-                                        <td>{{ $detail->tanggal_transaksi->format('d-m-Y') }}</td>
+                                        <td>{{ $detail->tanggal_transaksi ? $detail->tanggal_transaksi->format('d-m-Y') : 'N/A' }}</td>
                                         <td>{{ $detail->product->title }}</td>
                                         <td>{{ number_format($detail->product->price, 0, ',', '.') }}</td>
                                         <td>{{ $detail->jumlah_pembelian }}</td>

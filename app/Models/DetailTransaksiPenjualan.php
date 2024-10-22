@@ -13,16 +13,17 @@ class DetailTransaksiPenjualan extends Model
     public function getAllTransactionDetails()
     {
         $sql = $this->select(
-                        'transaksi_penjualans.nama_kasir',
-                        'transaksi_penjualans.tanggal_transaksi',
-                        'products.title',
-                        'products.price',
-                        'detail_transaksi_penjualans.jumlah_pembelian',
-                        DB::raw('products.price * detail_transaksi_penjualans.jumlah_pembelian AS total_harga')
-                    )
-                    ->join('transaksi_penjualans', 'transaksi_penjualans.id', '=', 'detail_transaksi_penjualans.transaksi_penjualan_id')
-                    ->join('products', 'products.id', '=', 'detail_transaksi_penjualans.id_product')
-                    ->latest('transaksi_penjualans.tanggal_transaksi');
+                'transaksi_penjualans.nama_kasir',
+                'transaksi_penjualans.tanggal_transaksi',
+                'products.title',
+                'products.price',
+                'detail_transaksi_penjualans.jumlah_pembelian',
+                DB::raw('products.price * detail_transaksi_penjualans.jumlah_pembelian AS total_harga')
+            )
+            ->leftJoin('transaksi_penjualans', 'transaksi_penjualans.id', '=', 'detail_transaksi_penjualans.transaksi_penjualan_id')
+            ->leftJoin('products', 'products.id', '=', 'detail_transaksi_penjualans.product_id')
+            ->latest('transaksi_penjualans.tanggal_transaksi');
+
         
         return $sql;
     }
@@ -34,7 +35,7 @@ class DetailTransaksiPenjualan extends Model
      */
     protected $fillable = [
         'transaksi_penjualan_id',
-        'id_product',
+        'product_id',
         'jumlah_pembelian',
     ];
 
@@ -55,7 +56,7 @@ class DetailTransaksiPenjualan extends Model
      */
     public function product()
     {
-        return $this->belongsTo(Product::class, 'id_product');
+        return $this->belongsTo(Product::class, 'product_id');
     }
 
     /**

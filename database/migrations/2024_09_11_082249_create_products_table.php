@@ -40,7 +40,7 @@ return new class extends Migration
 
         Schema::create('transaksi_penjualan', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_product')->constrained('products'); // Relasi ke tabel products
+            $table->foreignId('product_id')->constrained('products'); // Relasi ke tabel products
             $table->integer('jumlah_pembelian'); 
             $table->string('nama_kasir');
             $table->timestamp('tanggal_transaksi'); 

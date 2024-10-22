@@ -94,13 +94,13 @@
 
                             <div class="form-group mb-3">
                                 <label class="font-weight-bold">Nama Produk</label>
-                                <select class="form-control @error('id_product') is-invalid @enderror" name="id_product" id="productSelect" required onchange="updatePrice()">
+                                <select class="form-control @error('product_id') is-invalid @enderror" name="product_id" id="productSelect" required onchange="updatePrice()">
                                     <option value="">Pilih Produk</option>
                                     @foreach ($products as $product)
                                         <option value="{{ $product->id }}" data-price="{{ $product->harga }}">{{ $product->title }}</option>
                                     @endforeach
                                 </select>
-                                @error('id_product')
+                                @error('product_id')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>

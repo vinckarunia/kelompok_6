@@ -28,7 +28,7 @@ class detailTransaksiPenjualanController extends Controller
         //                 DB::raw('products.price * detail_transaksi_penjualan.jumlah_pembelian AS total_harga')
         //             )
         //             ->join('transaksi_penjualan', 'transaksi_penjualan.id', '=', 'detail_transaksi_penjualan.transaksi_penjualan_id')
-        //             ->join('products', 'products.id', '=', 'detail_transaksi_penjualan.id_product')
+        //             ->join('products', 'products.id', '=', 'detail_transaksi_penjualan.product_id')
         //             ->latest('transaksi_penjualan.tanggal_transaksi')
         //             ->paginate(10);
 
@@ -66,14 +66,14 @@ class detailTransaksiPenjualanController extends Controller
         // Validate the input
         $validatedData = $request->validate([
             'transaksi_penjualan_id' => 'required|exists:transaksi_penjualan,id',
-            'id_product'             => 'required|exists:products,id',
+            'product_id'             => 'required|exists:products,id',
             'jumlah_pembelian'       => 'required|integer|min:1',
         ]);
 
         // Create a new detail transaction
         DetailTransaksiPenjualan::create([
             'transaksi_penjualan_id' => $validatedData['transaksi_penjualan_id'],
-            'id_product'             => $validatedData['id_product'],
+            'product_id'             => $validatedData['product_id'],
             'jumlah_pembelian'       => $validatedData['jumlah_pembelian'],
         ]);
 
@@ -110,7 +110,7 @@ class detailTransaksiPenjualanController extends Controller
         // Validate the input
         $validatedData = $request->validate([
             'transaksi_penjualan_id' => 'required|exists:transaksi_penjualan,id',
-            'id_product'             => 'required|exists:products,id',
+            'product_id'             => 'required|exists:products,id',
             'jumlah_pembelian'       => 'required|integer|min:1',
         ]);
 
@@ -120,7 +120,7 @@ class detailTransaksiPenjualanController extends Controller
         // Update the transaction details
         $detail->update([
             'transaksi_penjualan_id' => $validatedData['transaksi_penjualan_id'],
-            'id_product'             => $validatedData['id_product'],
+            'product_id'             => $validatedData['product_id'],
             'jumlah_pembelian'       => $validatedData['jumlah_pembelian'],
         ]);
 
