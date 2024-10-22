@@ -78,7 +78,7 @@
 
                         <div class="form-group mb-3">
                             <label class="font-weight-bold">Nama Supplier</label>
-                            <input type="text" class="form-control @error('nama_supplier') is-invalid @enderror" name="supplier_name" placeholder="Masukkan Nama Supplier">
+                            <input type="text" class="form-control @error('nama_supplier') is-invalid @enderror" name="nama_supplier" placeholder="Masukkan Nama Supplier">
                         </div>
 
                         <div class="form-group mb-3">
@@ -88,7 +88,7 @@
 
                         <div class="form-group mb-3">
                             <label class="font-weight-bold">PIC Supplier</label>
-                            <input type="text" class="form-control @error('pic_supplier') is-invalid @enderror" name="pic_supplier" placeholder="Masukkan Nama PIC Supplier">
+                            <input type="text" class="form-control @error('pic_supplier') is-invalid @enderror" name="pic_supplier" placeholder="Masukkan PIC Supplier">
                         </div>
 
                         <div class="form-group mb-3">
